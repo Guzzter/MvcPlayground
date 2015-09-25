@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        Hello MVC PDF (AND IMAGES)
+    </div>
+    <div>
+        <p><a href="https://github.com/webgio/Rotativa">Rotativa on Github</a></p>
+    </div>
+    <div>
+        <p><a href="http://wkhtmltopdf.org/">Rotativa uses WK Html To Pdf</a></p>
+    </div>    
+    <br />
+    <div>
+        <a href="@Url.Action("DownloadPdf", "PdfDemo")">Download ViewAsPdf</a>
+    </div>
+    <div>
+        <a href="@Url.Action("DownloadPNGImage", "PdfDemo")">Download ViewAsPNG</a>
+    </div>
+    <div>
+        <a href="@Url.Action("DownloadActionAsPDF", "PdfDemo")">Download ActionAsPdf</a>
+    </div>
+    <div>
+        <a href="@Url.Action("DownloadPartialViewPDF", "PdfDemo")">Download PartialViewAsPDF</a>
+    </div>
+    <div>
+        <a href="@Url.Action("UrlAsPDF", "PdfDemo")">Download UrlAsPDF</a>
+    </div>
+    <div>
+        <a href="@Url.Action("DisplayPdfFromDisk", "PdfDemo")">Display PDF from Disk</a>
+    </div>
+    <div>
+        <a href="@Url.Action("DownloadPdfFromDisk", "PdfDemo")">Download PDF from Disk</a>
+    </div>
+    <div>
+        <a href="@Url.Action("DownloadPdfFromBytes", "PdfDemo")">Download PDF from Bytes (from disk)</a>
+    </div>            
+    
+</body>
+</html>

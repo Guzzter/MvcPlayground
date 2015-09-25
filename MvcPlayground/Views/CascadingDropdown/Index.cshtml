@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Cascading dropdown list demo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+    function onCountryChange() {
+        if ($("#country").val() != "Select") {
+            var CountryOptions = {};
+            CountryOptions.url = "@Url.Action("States")";
+                CountryOptions.type = "POST";
+                CountryOptions.data = JSON.stringify({ Country: $("#country").val() });
+                CountryOptions.datatype = "json";
+                CountryOptions.contentType = "application/json";
+                CountryOptions.success = function (StatesList) {
+                    $("#state").empty();
+                    for (var i = 0; i < StatesList.length; i++) {
+                        $("#state").append("<option>" + StatesList[i] + "</option>");
+                    }
+                    $("#state").prop("disabled", false);
+                };
+                CountryOptions.error = function () { alert("Error in Getting States!!"); };
+                $.ajax(CountryOptions);
+            }
+            else {
+                $("#state").empty();
+                $("#state").prop("disabled", true);
+            }
+    }
+    $(document).ready(function () {
+        $("#state").prop("disabled", true);
+        $("#country").change(onCountryChange);
+        if ($("#country").val() != "Select") {
+            onCountryChange();
+        }
+    });
+</script>
+ 
+@using (Html.BeginForm("Index", "CascadingDropdown", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <h4>Select Country & States</h4>
+    <hr />
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.Label("Select Country:", new { @class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.DropDownList("country", ViewData["Countries"] as List<SelectListItem>, new { @class = "form-control" })
+        </div>
+    </div><br />
+    <div class="form-group">
+        @Html.Label("Select States:", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <select id="state" name="state"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <p>
+                <input type="submit" class="btn btn-default" value="Submit" />
+            </p>
+        </div>
+    </div>
+    
+    if (ViewBag.state != null)
+     {
+         <p>You chose:
+             @ViewBag.country - @ViewBag.state
+        </p>
+     }
+}

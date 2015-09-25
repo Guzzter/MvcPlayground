@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>
+        Welcome to MVC Playground
+    </h1>
+    <div>
+        <p><a href="@Url.Action("Index", "PdfDemo")">PDF demo with Rotativa NuGet Package</a></p>
+        <p><a href="@Url.Action("Index", "CascadingDropdown")">Cascading dropdown with jQuery</a></p>
+        <p><a href="@Url.Action("Index", "AutocompleteTextBox")">Simple autocomplete textbox jQuery UI</a></p>
+        <p><a href="@Url.Action("AutoCompleteWithEditorTemplate", "AutocompleteTextBox")">Auto Complete With EditorTemplate and AutoCompleteAttribute (bonus: calendar with Global.ascx)</a></p>
+        <p><a href="@Url.Action("Confirm", "Home")">Confirm test</a></p>
+        
+    </div>
+</body>
+</html>

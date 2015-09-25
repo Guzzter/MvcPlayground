@@ -1,0 +1,12 @@
+﻿@using UkAdcHtmlAttributeProvider.Infrastructure
+@{
+    var attributes = Html.GetAttributes();
+    attributes.MergeValue("class", "text-box single-line");
+    
+    string autocompleteUrl = Html.GetAutoCompleteUrl(ViewContext.ViewData.ModelMetadata);
+    if (!string.IsNullOrEmpty(autocompleteUrl))
+    {
+        attributes.Add("data-autocomplete-url", autocompleteUrl);
+    } 
+}
+@Html.TextBox("", ViewContext.ViewData.TemplateInfo.FormattedModelValue, attributes)
